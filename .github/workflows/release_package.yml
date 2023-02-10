@@ -1,4 +1,4 @@
-name: Quarkus package
+name: Spring Java package
 
 on:
   release:
