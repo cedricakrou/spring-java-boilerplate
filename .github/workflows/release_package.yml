@@ -1,0 +1,43 @@
+name: Quarkus package
+
+on:
+  pull-request:
+    branches:
+      - main
+
+jobs:
+  buildPackage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone code source from repository
+        uses: actions/checkout@v3
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+      - name: Build package
+        run: mvn clean package
+
+  publishPackage:
+    needs: buildPackage
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Clone source code from repository
+        uses: actions/checkout@v3
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+      - name: Publish package
+        run: mvn --batch-mode deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
