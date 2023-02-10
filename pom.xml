@@ -151,4 +151,14 @@
             </releases>
         </pluginRepository>
     </pluginRepositories>
+
+    <!-- Distribution Management -->
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/cedricakrou/spring-java-boilerplate</url>
+        </repository>
+    </distributionManagement>
 </project>
