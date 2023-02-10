@@ -1,9 +1,8 @@
 name: Quarkus package
 
 on:
-  pull-request:
-    branches:
-      - main
+  release:
+    types: [ created ]
 
 jobs:
   buildPackage:
